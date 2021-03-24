@@ -1,26 +1,26 @@
 			section	.text
-			global	_ft_strcmp
+			global	ft_strcmp
 
-_ft_strcmp:
-            xor dl, dl
-            xor cl, cl
+ft_strcmp:
+            xor rdx, rdx
+            xor rcx, rcx
             xor rax, rax
             jmp main
 
 main:
             mov dl, BYTE [rdi + rax]
             mov cl, BYTE [rsi + rax]
-            cmp cl, dl
+            cmp ecx, edx
             jne end
-            cmp cl, 0
+            cmp ecx, 0
             je  end
-            cmp dl, 0
+            cmp edx, 0
             je  end
             inc rax
             jmp main
 
 end:
-            xor al, al
-            mov al, dl
-            sub al, cl
+            xor rax, rax
+            mov eax, edx
+            sub eax, ecx
             ret

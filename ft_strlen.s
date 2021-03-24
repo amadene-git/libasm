@@ -1,8 +1,8 @@
 
 			section	.text
-			global	_ft_strlen
+			global	ft_strlen
 
-_ft_strlen:
+ft_strlen:
 			xor		rax, rax
 			cmp		BYTE [rdi], 0
 			jz		end

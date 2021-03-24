@@ -13,26 +13,30 @@
 NAME		=	libasm.a
 
 SRCS		=	ft_strlen.s\
-				ft_strcpy.s\
-				ft_strcmp.s\
-				ft_write.s\
+			ft_strcpy.s\
+			ft_strcmp.s\
+			ft_write.s\
+			ft_read.s\
 
 OBJS		=	${SRCS:.s=.o}
 
-ASM			=	nasm
+ASM		=	nasm
 
-ASM_FLAG	=	-f macho64
+ASM_FLAG	=	-f elf64
 
+
+TEST		=	test
 
 
 %.o:		%.s
 				${ASM} ${ASM_FLAG} $<
 
 ${NAME}:	${OBJS}
-				ar rcs ${NAME} ${OBJS} ; ranlib ${NAME}
+				ar rcs ${NAME} ${OBJS}
+				ranlib ${NAME}
 	
 test:		all
-				clang -o test main.c -g ${NAME} ; rm -rf test.dSYM
+				clang -o ${TEST} main.c -g ${NAME}
 
 all:		${NAME}
 
@@ -41,5 +45,6 @@ clean:
 
 fclean:		clean
 				rm -rf ${NAME}
+				rm -rf ${TEST}
 
 re:			fclean ${NAME}

@@ -6,12 +6,23 @@ extern	ft_strlen
 extern	ft_strcpy
 
 ft_strdup:
+		push rbx
+		mov  rbx, rdi
 		call ft_strlen
-		push rdi
-		mov  rdi, rax
-		call malloc
-		mov  rdi, rax
-		pop  qword[rsi]
-		call ft_strcpy
-		ret
 		
+		mov  rdi, 0
+		mov  rdi, rax
+		inc  rdi
+		
+		call malloc
+		cmp  rax, 0
+		je   end
+		
+		mov  rdi, rax
+		mov  rsi, rbx
+		call ft_strcpy
+		
+		jmp  end
+end:
+		pop rbx
+		ret

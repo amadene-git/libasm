@@ -35,9 +35,9 @@ TEST		=	test
 ${NAME}:	${OBJS}
 				ar rcs ${NAME} ${OBJS}
 				ranlib ${NAME}
-	
-test:		all
-				clang -o ${TEST} main.c -g ${NAME}
+
+test:		${NAME}
+				clang -o test main.c -g ${NAME}
 
 all:		${NAME}
 
@@ -49,3 +49,5 @@ fclean:		clean
 				rm -rf ${TEST}
 
 re:			fclean ${NAME}
+
+.PHONY:		make re clean fclean test

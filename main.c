@@ -38,7 +38,7 @@ int		main(void)
 	char 	*s2 = "";
 	char 	*s3 = NULL;
 
-/*
+
 //################  FT_STRLEN ########################################
 
 
@@ -85,46 +85,69 @@ int		main(void)
 	
 	printf("cmp1->%s, cmp2->%s, ret->%d\n", "abc", "abb", strcmp("abc", "abb"));
 	printf("cmp1->%s, cmp2->%s, ret->%d\n\n", "abc", "abb", ft_strcmp("abc", "abb"));
-	
-	printf("cmp1->%s, cmp2->%s, ret->%d\n", "", "", strcmp("", ""));
-	printf("cmp1->%s, cmp2->%s, ret->%d\n\n", "", "", ft_strcmp("", ""));
-	
+	char b[2] = {'a', 0};
+	char a[2] = {0, 0};
+	printf("cmp1->%s, cmp2->%s, ret->%d\n", &a[0], &b[0], strcmp(&a[0], &b[0]));
+	printf("cmp1->%s, cmp2->%s, ret->%d\n\n", &a[0], &b[0], ft_strcmp(&a[0], &b[0]));
+
+
 //################## FT_WRITE #################################
 
-*/
+
 	char c = 'c';
 	printf("\n\n######################### FT_WRITE ######################\n");
 	int i = 0;
-//	i = write(1, "write\n", 6);
-//	printf("ret   :%d\n", i);
-	i = ft_write(1, NULL, 9);
-	printf("ft ret:%d\n", i);
 	
-//	i = write(-1, NULL, 3);
-//	printf("ret NULL   :%d\n", i);
-//	printf("%s\n", strerror(errno));
-	i = ft_write(-1, NULL, 3);
-	printf("ft ret NULL:%d\n", i);
+	i = write(1, NULL, 3);
+	printf("ft_write(1, NULL, 3)   :%d\n", i);
 	printf("%s\n", strerror(errno));
-/*
+	errno = 0;
+	i = ft_write(-1, NULL, 3);
+	printf("ft_write(-1, NULL, 3):%d\n", i);
+	printf("%s\n", strerror(errno));
+
 //############### FT_READ ############################################
 	printf("\n\n########################### FT_READ #######################\n");
 	ft_write(1, "read:", 5);
 	while (c != '\n')
+	{
 		read(0, &c, 1);
-
+		ft_write(1, &c, 1);
+	}
 	ft_write(1, "ft_read:", 8);
 	c = 0;
 	while (c != '\n')
+	{
 		ft_read(0, &c, 1);
+		ft_write(1, &c, 1);
+	}
 	ft_write(1, "ft_read(-1, NULL, 0)\n", 22);
 	ft_read(-1, NULL, 0);
 	printf("errno:%d->%s\n", errno, strerror(errno));
-	
-	char *dup1 = "abc";
-	char *dup2 = ft_strdup(dup1);
-	printf("dup->%s\n", dup2);
+//############# FT_STRDUP #####################################
 
-*/
+	printf("\n\n############################# FT_STRDUP #######################\n");
+	char *dup;
+ 	dup = ft_strdup("");
+        ft_putstr(dup);
+	putchar('\n');
+	dup = ft_strdup("abc");
+        ft_putstr(dup);
+	putchar('\n');
+        dup = ft_strdup("asl;fjl;asdjfjkasdl;fjadjsf");
+        ft_putstr(dup);
+	putchar('\n');
+        dup = ft_strdup("yope\0la");
+        ft_putstr(dup);
+	putchar('\n');
+        dup = ft_strdup("Lorem ipsum dolor sit amet, consectetur adipiscing\
+elit. Sed in malesuada purus. Etiam a scelerisque massa. Ut non euismod elit. Aliquam\
+bibendum dolor mi, id fringilla tellus pulvinar eu. Fusce vel fermentum sem. Cras\
+volutpat, eros eget rhoncus rhoncus, diam augue egestas dolor, vitae rutrum nisi\
+felis sed purus. Mauris magna ex, mollis non suscipit eu, lacinia ac turpis. Phasellus\
+ac tortor et lectus fermentum lobortis eu at mauris. Vestibulum sit amet posuere\
+tortor, sit amet consequat amet.");
+        ft_putstr(dup);
+	putchar('\n');
 	return (0);
 }

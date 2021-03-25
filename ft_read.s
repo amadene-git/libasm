@@ -5,8 +5,10 @@ extern	__errno_location
 ft_read:
 	mov rax, 0
 	syscall
-	je  ret_error
+	cmp rax, 0
+	jl  ret_error
 	ret
+
 ret_error:
 	neg  rax
 	push rax

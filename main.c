@@ -22,6 +22,8 @@ char	*ft_strcpy(char *dest, const char *src);
 int	ft_strcmp(const char *s1, const char *s2);
 ssize_t	ft_write(int fd, const void *buf, size_t count);
 ssize_t	ft_read(int fd, void *buff, size_t count);
+char	*ft_strdup(const char *str);
+
 
 void	ft_putstr(char *str)
 {
@@ -36,7 +38,7 @@ int		main(void)
 	char 	*s2 = "";
 	char 	*s3 = NULL;
 
-
+/*
 //################  FT_STRLEN ########################################
 
 
@@ -89,22 +91,22 @@ int		main(void)
 	
 //################## FT_WRITE #################################
 
-
+*/
 	char c = 'c';
 	printf("\n\n######################### FT_WRITE ######################\n");
 	int i = 0;
-	i = write(1, "write\n", 6);
-	printf("ret   :%d\n", i);
-	i = ft_write(1, "ft_write\n", 9);
+//	i = write(1, "write\n", 6);
+//	printf("ret   :%d\n", i);
+	i = ft_write(1, NULL, 9);
 	printf("ft ret:%d\n", i);
 	
-	i = write(1, NULL, 4);
-	printf("ret NULL   :%d\n", i);
-	printf("%s\n", strerror(errno));
-	i = ft_write(1, NULL, 4);
+//	i = write(-1, NULL, 3);
+//	printf("ret NULL   :%d\n", i);
+//	printf("%s\n", strerror(errno));
+	i = ft_write(-1, NULL, 3);
 	printf("ft ret NULL:%d\n", i);
 	printf("%s\n", strerror(errno));
-
+/*
 //############### FT_READ ############################################
 	printf("\n\n########################### FT_READ #######################\n");
 	ft_write(1, "read:", 5);
@@ -118,6 +120,11 @@ int		main(void)
 	ft_write(1, "ft_read(-1, NULL, 0)\n", 22);
 	ft_read(-1, NULL, 0);
 	printf("errno:%d->%s\n", errno, strerror(errno));
+	
+	char *dup1 = "abc";
+	char *dup2 = ft_strdup(dup1);
+	printf("dup->%s\n", dup2);
 
+*/
 	return (0);
 }

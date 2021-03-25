@@ -11,7 +11,8 @@ extern	ERRNO
 ft_write:
 		mov rax, 1;
 		syscall;
-		je ret_error;
+		cmp rax, 0
+		jl  ret_error;
 		ret;
 
 ret_error:
